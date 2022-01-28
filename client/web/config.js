@@ -1,4 +1,4 @@
 module.exports = {
-  staticPath: 'https://static.nestattacked.com/regdict/',
-  apiPath: 'https://api.nestattacked.com/regdict/v1/'
+  staticPath: 'https://localhost:8000/regdict/',
+  apiPath: 'https://localhost:8000/regdict/v1/'
 }

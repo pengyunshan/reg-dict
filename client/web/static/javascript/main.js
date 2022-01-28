@@ -51,7 +51,7 @@ function play(url){
 }
 
 function search(pattern){
-  $.get('https://api.nestattacked.com/regdict/v1/words?pattern=' + pattern, function(result){
+  $.get('http://localhost:8000/regdict/v1/words?pattern=' + pattern, function(result){
     var wordsHtml = renderSearchResult(result);
     $('#results').html(wordsHtml);
     $('#examples').hide();
@@ -67,7 +67,7 @@ function showHelp(){
 function readMore(){
   var count = $('.result-item').length;
   var pattern = $('#search-input').val();
-  $.get('https://api.nestattacked.com/regdict/v1/words?limit=10&pattern=' + pattern + '&offset=' + count, function(result){
+  $.get('http://localhost:8000/regdict/v1/words?limit=10&pattern=' + pattern + '&offset=' + count, function(result){
     var result = JSON.parse(result);
     var wordsHtml = result.words.map(renderWord).join('');
     wordsHtml += (result.more ? '<div id="readmore-container"><button id="readmore-button">查看更多</button></div>' : '');
