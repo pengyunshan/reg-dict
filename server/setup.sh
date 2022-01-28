@@ -1,1 +1,1 @@
-mysql -uroot -123 < words.sql
+mysql -uroot -p123 < words.sql

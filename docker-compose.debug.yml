@@ -1,17 +1,6 @@
 version: '3.4'
 
 services:
-  regdictserver:
-    image: regdictserver
-    build:
-      context: server
-      dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: development
-    ports:
-      - 8000:8000
-      - 9229:9229
-    command: ["node", "--inspect=0.0.0.0:9229", "./index.js"]
   db:
     image: mysql:8.0
     restart: always
@@ -25,3 +14,18 @@ services:
       --lower_case_table_names=1
     ports:
       - 3306:3306
+    volumes:
+      - "./server:/home/s/app/mysql_init"
+  regdictserver:
+    image: regdictserver
+    build:
+      context: server
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8000:8000
+      - 9229:9229
+    depends_on:
+      - "db"
+    command: ["node", "--inspect=0.0.0.0:9229", "./index.js"]
